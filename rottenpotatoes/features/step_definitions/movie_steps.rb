@@ -1,5 +1,10 @@
 # Add a declarative step here for populating the DB with movies.
 
+require 'uri'
+require 'cgi'
+require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
+require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "selectors"))
+
 Given(/the following movies exist/) do |movies_table|
   movies_table.hashes.each do |movie|
     # each returned element will be a hash whose key is the table header.
@@ -19,8 +24,8 @@ end
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.
-  idx1 = page.body =~ e1
-  idx2 = page.body =~ e2
+  idx1 = page.body =~ /#{e1}/
+  idx2 = page.body =~ /#{e2}/
   assert idx1 < idx2
   #fail "Unimplemented"
 end
@@ -52,3 +57,4 @@ Then /I should see all the movies/ do
   end 
   #fail "Unimplemented"
 end
+
