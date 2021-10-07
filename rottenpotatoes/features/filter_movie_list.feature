@@ -25,8 +25,9 @@ Background: movies have been added to database
 Scenario: restrict to movies with 'PG' or 'R' ratings
   # enter step(s) to check the 'PG' and 'R' checkboxes
   #Then I should see "The Incredibles"
-  When I check "PG"
-  And I check "R"
+  #When I check "PG"
+  When I check the following ratings: R
+  #And I check "R"
   # enter step(s) to uncheck all other checkboxes
   And I uncheck "PG-13"
   And I uncheck "G"
