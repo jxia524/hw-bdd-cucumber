@@ -26,7 +26,7 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  page.body is the entire content of the page as a string.
   idx1 = page.body =~ /#{e1}/
   idx2 = page.body =~ /#{e2}/
-  assert idx1 < idx2
+  expect(idx1 < idx2)
   #fail "Unimplemented"
 end
 
@@ -53,7 +53,7 @@ end
 Then /I should see all the movies/ do
   # Make sure that all the movies in the app are visible in the table
   Movie.all.each do |movie|
-   assert page.body.include?movie.title
+   expect(page.body.include?movie.title)
   end 
   #fail "Unimplemented"
 end
